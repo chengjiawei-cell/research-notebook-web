@@ -1,5 +1,7 @@
 # 研途 · Research Notebook
 
+**[打开研途科研工作台](https://chengjiawei-cell.github.io/research-notebook-web/) — 无需安装，直接从浏览器使用。**
+
 大学科研记录工作台的网页界面。通过 GitHub Pages 在线访问，支持课题组、日程、时间线、任务进度、科研日志、文献与资料上传。
 
 这个公开界面仓库不包含任何真实科研记录和资料。记录默认保存在当前浏览器；在网站设置中连接自己的私有 GitHub 仓库后，可以跨设备同步。
