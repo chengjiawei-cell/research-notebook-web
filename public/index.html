@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#254e43">
   <meta name="research-runtime" content="static">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://api.github.com; img-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; connect-src 'self' https:; img-src 'self' data: blob:; font-src 'self' blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="description" content="研途，一处安放日程、实验、文献与大学科研成长的私人空间。">
   <title>研途 · Research Notebook</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./reader.css">
+  <link rel="stylesheet" href="./vendor/pdfjs/text_layer.css">
   <script type="module" src="./app.js"></script>
 </head>
 <body>

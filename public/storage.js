@@ -87,7 +87,7 @@ export class NotebookStorage {
     }
     if(route.startsWith('/api/files/')&&method==='DELETE'){
       const current=await this.current();const data=structuredClone(current.data);const id=decodeURIComponent(route.slice('/api/files/'.length));const file=data.files.find(f=>f.id===id);if(!file)throw new Error('资料不存在。');
-      data.files=data.files.filter(f=>f.id!==id);return this.save(data,options.headers?.['If-Match'],new Map([[file.path,null]]));
+      data.files=data.files.filter(f=>f.id!==id);for(const paper of data.papers)if(paper.pdfFileId===id)paper.pdfFileId='';return this.save(data,options.headers?.['If-Match'],new Map([[file.path,null]]));
     }
     throw new Error('不支持的操作。');
   }

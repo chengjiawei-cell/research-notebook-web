@@ -43,6 +43,10 @@ export function validate(data) {
   for (const item of data.papers) {
     if (!['unread', 'reading', 'read'].includes(item.status)) fail('无效的阅读状态。');
     if (item.url) { try { if (!['https:', 'http:'].includes(new URL(item.url).protocol)) fail('文献链接须以 https:// 或 http:// 开头。'); } catch { fail('文献链接无效。'); } }
+    if (item.pdfUrl) { try { if (new URL(item.pdfUrl).protocol !== 'https:') fail('PDF 直链须使用 HTTPS。'); } catch { fail('PDF 直链无效，请使用 HTTPS 链接。'); } }
+    if (item.readingNotes !== undefined && !text(item.readingNotes, 100000)) fail('阅读笔记必须为文本，且不能超过十万字。');
+    if (item.readingPage !== undefined && (!Number.isInteger(item.readingPage) || item.readingPage < 1 || item.readingPage > 100000)) fail('阅读页码无效。');
+    if (item.pdfFileId && !data.files.some(file=>file.id===item.pdfFileId&&file.groupId===item.groupId)) fail('关联的 PDF 资料不存在，或不属于这篇文献的课题组。');
   }
   for (const item of data.files) {
     if (!new RegExp(`^materials/${item.groupId}/[a-zA-Z0-9_.-]+$`).test(item.path) || item.path.includes('..') || !Number.isInteger(item.size) || item.size < 0) fail('资料路径或大小无效。');

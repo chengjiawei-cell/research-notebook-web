@@ -6,7 +6,7 @@ export const priorityNames = { low:'低优先级', normal:'普通', high:'高优
 export function progress(data, project) { const tasks = data.tasks.filter(t => t.projectId === project.id); return tasks.length ? Math.round(tasks.filter(t => t.status === 'done').length / tasks.length * 100) : project.status === 'completed' ? 100 : 0; }
 export function scoped(data, key, groupId = 'all', query = '') {
   const q = query.trim().toLowerCase();
-  return data[key].filter(item => (groupId === 'all' || (key === 'groups' ? item.id : item.groupId) === groupId) && (!q || [item.title, item.name, item.content, item.summary, item.author, item.tags, item.description, item.next, item.blockers, item.mentor].some(v => String(v || '').toLowerCase().includes(q))));
+  return data[key].filter(item => (groupId === 'all' || (key === 'groups' ? item.id : item.groupId) === groupId) && (!q || [item.title, item.name, item.content, item.summary, item.readingNotes, item.author, item.tags, item.description, item.next, item.blockers, item.mentor].some(v => String(v || '').toLowerCase().includes(q))));
 }
 export function weekRange(date = day()) { const d = new Date(date + 'T12:00:00'); const start = shiftDay(date, -((d.getDay() + 6) % 7)); return { start, end: shiftDay(start, 6) }; }
 export function report(data, groupId = 'all', date = day()) {
